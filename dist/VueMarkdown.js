@@ -3,6 +3,11 @@ import MarkdownIt from "markdown-it";
 var VueMarkdown = Vue.extend({
     name: "VueMarkdown",
     props: {
+        tag: {
+            type: String,
+            required: false,
+            default: "div"
+        },
         source: {
             type: String,
             required: true
@@ -28,7 +33,7 @@ var VueMarkdown = Vue.extend({
         this.md = new MarkdownIt(this.options);
     },
     render: function (h) {
-        return h("div", { domProps: { innerHTML: this.content } });
+        return h(this.tag, { domProps: { innerHTML: this.content } });
     }
 });
 export default VueMarkdown;
